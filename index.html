@@ -33,6 +33,46 @@
     }
 
  
+    #dropdown {
+        padding: 20px 0px; 
+        text-align: center;
+        margin-top: 47px; 
+    }
+
+    li {
+        display: inline-block; /* 가로로 나열 */
+        position: relative;    /* 자식 요소의 위치를 기준으로 설정 */
+        margin: 0 15px;       /* 간격 설정 */
+    }
+
+    li a {
+        color: black; 
+        text-decoration: none;
+        padding: 5px 10px; 
+        text-align: center;
+        position: relative;
+    }
+
+    li a:hover {
+        color: black; /* 호버 시 색상 유지 */
+    }
+
+    /* 밑줄 효과 */
+    li a::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: -5px; /* 텍스트 아래 위치 */
+        width: 0;
+        height: 2px; /* 밑줄 두께 */
+        background: black;
+        transition: width 0.3s ease, left 0.3s ease; /* 애니메이션 효과 */
+    }
+
+    li a:hover::after {
+        width: 100%; /* 호버 시 밑줄 폭 */
+        left: 0;     /* 중앙에서 퍼짐 */
+    }
    
     #jaeyoung {text-align: center; font-size: 60px;
         top: 12%; position: absolute;
@@ -141,7 +181,7 @@
             </li>
  
             <li class="dropdown">
-                <a href=""> &nbsp; post </a>
+                <a href=""> &nbsp;post </a>
                     <div class="dropdown-content">
                         <a href=""> INTERVIEW</a>
                         <a href=""> GOSSIP </a>
@@ -168,8 +208,7 @@
                 <li> <h2> imformation </h2></li>
                 <li> 상호명 : (주) OSIM </li>
                 <li> Address : 전북특별자치도 전주시 완산구 천잠로 303 </li>
-                <li> COO : Park Jae Young</li>
-                <li> CEO Kim Chan Jin</li>
+                <li> COO : Park Jae Young   /  CEO : Kim Chan Jin</li>
    
             </ul>      
         </div>
