@@ -9,18 +9,27 @@
         left: 80%; top: 32px; font-weight: 800;
         text-decoration: none; color: black;}
    
-    #logo{left: 60px; top: 15px;
+        #logo {left: 60px; top: 15px;
         margin-bottom: 0px; padding: 0%;
-        width: 120px; height: 50px; position: absolute;}
+        width: 120px; height: 50px; position: absolute;
+        font-size: 24px; font-weight: bold; color: black; text-align: center; line-height: 50px;}
    
-    #image-container {
-    display: flex;
-    justify-content: center; /* 가로 가운데 정렬 */
-    align-items: center;     /* 세로 가운데 정렬 */
-    height: 100vh;           /* 화면 높이를 100%로 설정 */}
+        #image-container {
+        display: flex;
+        justify-content: center; /* 가로 가운데 정렬 */
+        align-items: center;     /* 세로 가운데 정렬 */
+        height: 100vh;           /* 화면 높이를 100%로 설정 */
+        overflow: hidden;        /* 넘치는 부분 숨김 */
+    }
 
-    #가운데이미지 {
-        margin-top: 0;
+    #image-container img {
+        width: 100%;            /* 이미지 너비를 100%로 설정 */
+        height: auto;           /* 비율에 맞게 높이 자동 조정 */
+        display: none;          /* 처음에는 이미지 숨김 */
+    }
+
+    #image-container img.active {
+        display: block;         /* 활성화된 이미지만 보이도록 설정 */
     }
 
  
@@ -113,24 +122,22 @@
             Login
         </a>
  
- 
-        <img src="https://ifh.cc/g/HohkRA.jpg" id="logo" alt="logo">
- 
+        <div id="logo">OSIM</div>
  
  
         <ul id ="dropdown">
  
  
             <li class="dropdown">
-                <a href="shop.html"> outer </a>
+                <a href="outer.html"> outer </a>
             </li>
  
             <li class="dropdown">
-                <a href="story.html"> top </a>
+                <a href="top.html"> top </a>
             </li>
  
             <li class="dropdown">
-                <a href="look.html  "> bottem </a>
+                <a href="bottem.html"> bottem </a>
             </li>
  
             <li class="dropdown">
@@ -141,17 +148,17 @@
                         <a href=""> CELEB NEWS </a>
  
            <li class="dropdown">
-                <a href="fashion.html"> FASHION </a>
+                <a href="fashion.html"> fashion </a>
             </li>
            
 	 </li>
  
         </ul>
-   
-        <h1 id="wodud"> 브랜드 이름설정 </h1>
-   
+
         <div id="image-container">
-            <img src="https://ifh.cc/g/cbOH9P.jpg" id="wodud" width="1900" height="800" alt="Fashion Image">
+            <img src="https://ifh.cc/g/cbOH9P.jpg" class="active" alt="Fashion Image 1">
+            <img src="https://ifh.cc/g/AFoPWX.jpg" alt="Fashion Image 2">
+            <img src="https://ifh.cc/g/T2gpsd.jpg" alt="Fashion Image 3"> <!-- 다른 이미지 URL로 변경 -->
         </div>
         
  
@@ -159,7 +166,7 @@
             <ul id="gray_ul">
  
                 <li> <h2> 정보 </h2></li>
-                <li> 정보 </li>
+                <li> Address : 전북특별자치도 전주시 완산구 천잠로 303 </li>
                 <li> 정보 </li>
                 <li> 정보</li>
                 <li> 정보</li>
@@ -172,14 +179,28 @@
 	<div id=Phone_Email>    
               Email | qkrwodud2952@jj.ac.kr <br>
 <br>
-              Phone | 010-1111-1111
+              Phone | 010-1010-1010
  
 	</div>
  
 	<div id=FAX_ADD>
-              FAX | 010-1111-1111 <br>
+              FAX | 010-1010-1010 <br>
 <br>
 	</div>
+
+    <script>
+        let currentIndex = 0;
+        const images = document.querySelectorAll('#image-container img');
+        const totalImages = images.length;
+
+        function changeImage() {
+            images[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + 1) % totalImages;
+            images[currentIndex].classList.add('active');
+        }
+
+        setInterval(changeImage, 3000); // 3초마다 이미지 변경
+    </script>
 
     </body>
 </html>
