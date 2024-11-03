@@ -1,0 +1,187 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Outer Fashion</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            padding-bottom: 50px; /* 푸터 공간을 위해 여백 추가 */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* 중앙 정렬 */
+        }
+
+        #header {
+            position: relative;
+            background-color: #ffffff; /* 배경색을 흰색으로 변경 */
+            padding: 20px;
+            text-align: center;
+            width: 100%; /* 전체 너비 */
+        }
+
+        #logo {
+            position: absolute;
+            left: 60px; /* 기존 코드와 동일 */
+            top: 15px; /* 기존 코드와 동일 */
+            width: 120px; /* 로고 너비 */
+            height: 50px; /* 로고 높이 */
+            font-size: 24px; /* 폰트 크기 */
+            font-weight: bold; /* 글자 굵기 */
+            color: black;
+            line-height: 50px; /* 세로 가운데 정렬 */
+            text-align: center;
+            text-decoration: none; /* 밑줄 제거 */
+        }
+
+        #navbar {
+            padding: 20px 0px;
+            text-align: center;
+            margin-top: 47px;
+        }
+
+        ul {
+            padding: 6px;
+            margin: 0 auto;
+            font-size: 20px; /* 네비게이션 바 글자 크기 */
+        }
+
+        li {
+            display: inline-block; /* 가로로 나열 */
+            position: relative;    /* 자식 요소의 위치를 기준으로 설정 */
+            margin: 0 25px;       /* 간격을 조정하여 초기 코드와 동일하게 설정 */
+        }
+
+        li a {
+            color: black; 
+            text-decoration: none;
+            padding: 5px 10px; 
+            text-align: center;
+            position: relative;
+            font-size: 20px; /* 네비게이션 글자 크기 */
+        }
+
+        li a:hover {
+            background: darkgray; /* 호버 시 배경색 */
+        }
+
+        /* 드롭다운 숨김 및 표시 */
+        .dropdown-content {
+            display: none; /* 기본적으로 드롭다운 숨김 */
+            position: absolute;
+            background-color: ghostwhite;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1; /* 드롭다운이 다른 요소 위에 오도록 설정 */
+        }
+
+        li.dropdown:hover .dropdown-content {
+            display: block; /* 호버 시 드롭다운 표시 */
+        }
+
+        #content {
+            padding: 20px;
+            text-align: center; /* 제목과 콘텐츠를 중앙 정렬 */
+            display: flex;
+            flex-wrap: wrap; /* 여러 줄로 배열 */
+            justify-content: center; /* 중앙 정렬 */
+        }
+
+        h1 {
+            width: 100%; /* 제목을 중앙에 배치하기 위해 전체 너비 설정 */
+            margin: 20px 0; /* 제목의 여백 설정 */
+            font-size: 32px; /* 제목 크기 설정 */
+        }
+
+        .product {
+            margin: 20px;
+            display: flex;
+            flex-direction: column; /* 세로 방향으로 정렬 */
+            align-items: center; /* 중앙 정렬 */
+            text-align: center;
+        }
+
+        .product img {
+            width: 500px; /* 이미지 너비 설정 */
+            height: 500px; /* 이미지 높이 설정 */
+            object-fit: cover; /* 이미지 비율 유지하며 잘림 */
+        }
+
+        #footer {
+            background-color: #f8f8f8;
+            text-align: center;
+            padding: 10px;
+            position: fixed; /* 고정 위치 */
+            width: 100%;
+            bottom: 0; /* 페이지 하단에 고정 */
+        }
+
+        #Login {
+            font-size: 24px; /* 동일한 폰트 크기 */
+            position: absolute; /* 위치를 절대적으로 설정 */
+            left: 80%; /* 기존 코드와 동일 */
+            top: 32px; /* 기존 코드와 동일 */
+            font-weight: bold; /* 글자 굵기 */
+            text-decoration: none; 
+            color: black;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="header">
+        <a id="logo" href="index.html">OSIM</a> <!-- 로고에 링크 추가 -->
+        <div id="navbar">
+            <ul>
+                <li><a href="outer.html">Outer</a></li>
+                <li><a href="top.html">Top</a></li>
+                <li><a href="bottom.html">Bottom</a></li>
+                <li class="dropdown">
+                    <a href="#">Post</a>
+                    <div class="dropdown-content">
+                        <a href="#">INTERVIEW</a>
+                        <a href="#">GOSSIP</a>
+                        <a href="#">CELEB NEWS</a>
+                    </div>
+                </li>
+                <li><a href="fashion.html">Fashion</a></li>
+            </ul>
+        </div>
+        <a id="Login" href="login.html">Login</a> <!-- 로그인 링크 추가 -->
+    </div>
+
+    <div id="content">
+        <h1>Outer</h1>
+
+        <div class="product">
+            <img src="https://ifh.cc/g/zN2QYl.jpg" alt="BIG CHROME B BLACK LINE ZIP-UP HOODIE [BLACK]">
+            <h2>BIG CHROME B BLACK LINE ZIP-UP HOODIE [BLACK]</h2>
+            <p>판매가: 129,000원</p>
+        </div>
+
+        <div class="product">
+            <img src="https://ifh.cc/g/txsp75.jpg" alt="BIG CHROME B BLACK LINE ZIP-UP HOODIE [WHITE]">
+            <h2>BIG CHROME B BLACK LINE ZIP-UP HOODIE [WHITE]</h2>
+            <p>판매가: 129,000원</p>
+        </div>
+
+        <div class="product">
+            <img src="https://ifh.cc/g/4BBjbD.jpg" alt="SILVER LINE NYLON WIND BREAKER [BLACK]">
+            <h2>SILVER LINE NYLON WIND BREAKER [BLACK]</h2>
+            <p>판매가: 145,000원</p>
+        </div>
+
+        <div class="product">
+            <img src="https://ifh.cc/g/NsoZRh.jpg" alt="GLAZE ZIP-UP HOODIE [BLACK]">
+            <h2>GLAZE ZIP-UP HOODIE [BLACK]</h2>
+            <p>판매가: 139,000원</p>
+        </div>
+
+    </div>
+
+    <div id="footer">
+        <p>&copy; 2024 OSIM. All rights reserved.</p>
+    </div>
+
+</body>
+</html>
