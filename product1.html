@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>BIG CHROME B BLACK LINE ZIP-UP HOODIE [BLACK]</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        #header {
+            width: 100%;
+            background-color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        #logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+            text-decoration: none;
+        }
+
+        .product {
+            margin: 20px;
+            text-align: center;
+        }
+
+        .product img {
+            width: 500px;
+            height: 500px;
+            object-fit: cover;
+        }
+
+        .price {
+            font-size: 24px;
+            color: #d9534f; /* 가격 색상 */
+            margin: 10px 0;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            color: white;
+            background-color: #5bc0de;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #31b0d5; /* 호버 시 색상 변경 */
+        }
+
+        #footer {
+            margin-top: auto;
+            background-color: #f8f8f8;
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="header">
+        <a id="logo" href="index.html">OSIM</a>
+    </div>
+
+    <div class="product">
+        <h1>BIG CHROME B BLACK LINE ZIP-UP HOODIE [BLACK]</h1>
+        <img src="https://ifh.cc/g/zN2QYl.jpg" alt="BIG CHROME B BLACK LINE ZIP-UP HOODIE [BLACK]">
+        <p class="price">판매가: 129,000원</p>
+        <p>이 제품은 다양한 스타일에 잘 어울리는 블랙 라인 후드 집업입니다. 편안한 착용감과 세련된 디자인으로 데일리 룩에 적합합니다.</p>
+        <button onclick="addToCart('BIG CHROME B BLACK LINE ZIP-UP HOODIE [BLACK]', 129000)">장바구니에 추가</button>
+        <button onclick="checkout('BIG CHROME B BLACK LINE ZIP-UP HOODIE [BLACK]', 129000)">결제하기</button>
+    </div>
+
+    <div id="footer">
+        <p>&copy; 2024 OSIM. All rights reserved.</p>
+    </div>
+
+    <script>
+        function addToCart(productName, price) {
+            alert(productName + "가 장바구니에 추가되었습니다. 가격: " + price + "원");
+            // 여기에 장바구니 추가 로직을 추가할 수 있습니다.
+        }
+
+        function checkout(productName, price) {
+            alert(productName + "의 결제 페이지로 이동합니다. 가격: " + price + "원");
+            // 여기에 결제 페이지로 이동하는 로직을 추가할 수 있습니다.
+        }
+    </script>
+
+</body>
+</html>
