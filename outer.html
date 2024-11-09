@@ -65,19 +65,23 @@
         li a:hover {
             background: darkgray; /* 호버 시 배경색 */
         }
+        
+    /* 밑줄 효과 */
+    li a::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: -5px; /* 텍스트 아래 위치 */
+        width: 0;
+        height: 2px; /* 밑줄 두께 */
+        background: black;
+        transition: width 0.3s ease, left 0.3s ease; /* 애니메이션 효과 */
+    }
 
-        /* 드롭다운 숨김 및 표시 */
-        .dropdown-content {
-            display: none; /* 기본적으로 드롭다운 숨김 */
-            position: absolute;
-            background-color: ghostwhite;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1; /* 드롭다운이 다른 요소 위에 오도록 설정 */
-        }
-
-        li.dropdown:hover .dropdown-content {
-            display: block; /* 호버 시 드롭다운 표시 */
-        }
+    li a:hover::after {
+        width: 100%; /* 호버 시 밑줄 폭 */
+        left: 0;     /* 중앙에서 퍼짐 */
+    }
 
         #content {
             padding: 20px;
@@ -94,37 +98,43 @@
         }
 
         .product {
-            margin: 20px;
-            display: flex;
-            flex-direction: column; /* 세로 방향으로 정렬 */
-            align-items: center; /* 중앙 정렬 */
-            text-align: center;
-        }
+    margin: 20px;
+    display: flex;
+    flex-direction: column; /* 세로 방향으로 정렬 */
+    align-items: center; /* 중앙 정렬 */
+    text-align: center;
+    width: 500px; /* 이미지 컨테이너의 너비 */
+}
 
-        .product img {
-            width: 500px; /* 이미지 너비 설정 */
-            height: 500px; /* 이미지 높이 설정 */
-            object-fit: cover; /* 이미지 비율 유지하며 잘림 */
-        }
+.product img {
+    width: 100%; /* 부모 요소의 너비에 맞춤 */
+    height: 500px; /* 이미지 높이 설정 */
+    object-fit: cover; /* 이미지 비율 유지하며 잘림 */
+    transition: transform 0.3s ease-in-out; /* 마우스 오버 시 변환 효과 */
+    overflow: hidden; /* 영역 초과 시 숨김 */
+}
 
-        #footer {
-            background-color: #f8f8f8;
-            text-align: center;
-            padding: 10px;
-            position: fixed; /* 고정 위치 */
-            width: 100%;
-            bottom: 0; /* 페이지 하단에 고정 */
-        }
+.product img:hover {
+    transform: scale(1.1); /* 마우스 오버 시 확대 */
+}
 
         #Login {
-            font-size: 24px; /* 동일한 폰트 크기 */
+            font-size: 103%; /* 동일한 폰트 크기 */
             position: absolute; /* 위치를 절대적으로 설정 */
             left: 80%; /* 기존 코드와 동일 */
             top: 32px; /* 기존 코드와 동일 */
-            font-weight: bold; /* 글자 굵기 */
+            font-weight: 00; /* 글자 굵기 */
             text-decoration: none; 
             color: black;
         }
+
+    #Phone_Email, #FAX_ADD {
+    text-align: left; /* 왼쪽 정렬 */
+    width: 100%; /* 전체 너비 사용 */
+    padding-left: 40px; /* 왼쪽으로 여백 추가 */
+    margin-bottom: 10px; /* 각 요소 간 여백 */
+}
+
     </style>
 </head>
 <body>
@@ -136,14 +146,6 @@
                 <li><a href="outer.html">Outer</a></li>
                 <li><a href="top.html">Top</a></li>
                 <li><a href="bottom.html">Bottom</a></li>
-                <li class="dropdown">
-                    <a href="#">Post</a>
-                    <div class="dropdown-content">
-                        <a href="#">INTERVIEW</a>
-                        <a href="#">GOSSIP</a>
-                        <a href="#">CELEB NEWS</a>
-                    </div>
-                </li>
                 <li><a href="fashion.html">Fashion</a></li>
             </ul>
         </div>
@@ -186,11 +188,28 @@
         </div>
     
     </div>
-    
+    <div id="gray">
+        <ul id="gray_ul">
 
-    <div id="footer">
-        <p>&copy; 2024 OSIM. All rights reserved.</p>
+            <li> <h2> imformation </h2></li>
+            <li> 상호명 : (주) OSIM </li>
+            <li> Address : 전북특별자치도 전주시 완산구 천잠로 303 </li>
+            <li> COO : Park Jae Young   /  CEO : Kim Chan Jin</li>
+
+        </ul>      
     </div>
+
+<div id=Phone_Email>    
+          Email | qkrwodud2952@jj.ac.kr <br>
+<br>
+          Phone | 010-1010-1010
+
+</div>
+
+<div id=FAX_ADD>
+          FAX | 010-1010-1010 <br>
+<br>
+</div>
 
 </body>
 </html>
