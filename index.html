@@ -5,9 +5,24 @@
     <title> Fasion Web page </title>
    
 <style>
-    #Login {font-size: 103%; position: absolute;
-        left: 80%; top: 32px; font-weight: 800;
-        text-decoration: none; color: black;}
+        /* 로그인과 장바구니 링크를 오른쪽 상단에 나란히 배치 */
+        #user-links {
+            position: absolute;
+            top: 33px;
+            right: 300px;
+            display: flex;
+            gap: 20px; /* 링크들 사이 간격 */
+        }
+
+        #Login, #cartLink {
+            text-decoration: none;
+            color: black;
+            font-size: 17px;
+        }
+
+        #Login:hover, #cartLink:hover {
+            color: darkgray;
+        }
    
         #logo {left: 60px; top: 15px;
         margin-bottom: 0px; padding: 0%;
@@ -158,9 +173,10 @@
  
     <body>
        
-        <a id="Login" href="login.html">
-            Login
-        </a>
+        <div id="user-links">
+            <a id="Login" href="login.html">Login</a>
+            <a id="cartLink" href="cart.html">Cart</a>
+        </div>
  
         <div id="logo">OSIM</div>
  

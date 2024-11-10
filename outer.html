@@ -118,14 +118,23 @@
     transform: scale(1.1); /* 마우스 오버 시 확대 */
 }
 
-        #Login {
-            font-size: 103%; /* 동일한 폰트 크기 */
-            position: absolute; /* 위치를 절대적으로 설정 */
-            left: 80%; /* 기존 코드와 동일 */
-            top: 32px; /* 기존 코드와 동일 */
-            font-weight: 00; /* 글자 굵기 */
-            text-decoration: none; 
+        /* 로그인과 장바구니 링크를 오른쪽 상단에 나란히 배치 */
+        #user-links {
+            position: absolute;
+            top: 33px;
+            right: 300px;
+            display: flex;
+            gap: 20px; /* 링크들 사이 간격 */
+        }
+
+        #Login, #cartLink {
+            text-decoration: none;
             color: black;
+            font-size: 17px;
+        }
+
+        #Login:hover, #cartLink:hover {
+            color: darkgray;
         }
 
     #Phone_Email, #FAX_ADD {
@@ -149,7 +158,10 @@
                 <li><a href="fashion.html">Fashion</a></li>
             </ul>
         </div>
-        <a id="Login" href="login.html">Login</a> <!-- 로그인 링크 추가 -->
+        <div id="user-links">
+            <a id="Login" href="login.html">Login</a>
+            <a id="cartLink" href="cart.html">Cart</a>
+        </div>
     </div>
 
     <div id="content">

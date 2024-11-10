@@ -67,7 +67,7 @@
             background: darkgray; /* 호버 시 배경색 */
         }
 
-            /* 밑줄 효과 */
+        /* 밑줄 효과 */
     li a::after {
         content: "";
         position: absolute;
@@ -154,14 +154,23 @@
             bottom: 0; /* 페이지 하단에 고정 */
         }
 
-        #Login {
-            font-size: 103%; /* 동일한 폰트 크기 */
-            position: absolute; /* 위치를 절대적으로 설정 */
-            left: 80%; /* 기존 코드와 동일 */
-            top: 32px; /* 기존 코드와 동일 */
-            font-weight: 400; /* 글자 굵기 */
-            text-decoration: none; 
+        /* 로그인과 장바구니 링크를 오른쪽 상단에 나란히 배치 */
+        #user-links {
+            position: absolute;
+            top: 33px;
+            right: 300px;
+            display: flex;
+            gap: 20px; /* 링크들 사이 간격 */
+        }
+
+        #Login, #cartLink {
+            text-decoration: none;
             color: black;
+            font-size: 17px;
+        }
+
+        #Login:hover, #cartLink:hover {
+            color: darkgray;
         }
         
     </style>
@@ -178,7 +187,11 @@
                 <li><a href="fashion.html">Fashion</a></li>
             </ul>
         </div>
-        <a id="Login" href="login.html">Login</a> <!-- 로그인 링크 추가 -->
+                <!-- 로그인 및 장바구니 링크를 오른쪽 상단에 나란히 배치 -->
+                <div id="user-links">
+                    <a id="Login" href="login.html">Login</a>
+                    <a id="cartLink" href="cart.html">Cart</a>
+                </div>
     </div>
 
     <div id="content">
@@ -193,7 +206,7 @@
         </div>
         <div class="product-info">
             <h1>BIG CHROME B BLACK LINE ZIP-UP HOODIE [WHITE]</h1>
-            <div class="price">판매가: 129,000원</div>
+            <div class="price">판매가: 129000원</div>
             <div id="details"> DETAILS</div>
             <div id="description">
                 <strong>* 빅트롭 B 블랙 라인 집업 후디</strong>
@@ -212,16 +225,38 @@
             <button class="btn btn-outline-dark" id="buyNow">바로 구매하기</button>
             
             <script>
-                // 버튼 클릭 시 팝업 메시지
-                document.getElementById('addToCart').addEventListener('click', function() {
+                // 장바구니에 담을 제품 정보
+                const product = {
+                    name: "BIG CHROME B BLACK LINE ZIP-UP HOODIE [WHITE]",
+                    price: 129000,
+                    image: "https://ifh.cc/g/GLdZgT.jpg",
+                };
+
+                // 장바구니에 제품 추가 함수
+                function addToCart() {
                     const quantity = document.querySelector('input[type="number"]').value;
+                    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+                    const existingProduct = cart.find(item => item.name === product.name);
+                    
+                    if (existingProduct) {
+                        existingProduct.quantity += parseInt(quantity); // 수량 업데이트
+                    } else {
+                        cart.push({ ...product, quantity: parseInt(quantity) }); // 새로운 제품 추가
+                    }
+                    
+                    localStorage.setItem("cart", JSON.stringify(cart)); // 로컬 스토리지에 저장
                     alert(quantity + "개가 장바구니에 담겼습니다.");
-                });
-            
-                document.getElementById('buyNow').addEventListener('click', function() {
+                }
+
+                // 구매 버튼 클릭 시 동작
+                function buyNow() {
                     const quantity = document.querySelector('input[type="number"]').value;
                     alert(quantity + "개를 구매합니다.");
-                });
+                }
+
+                // 버튼 이벤트 리스너
+                document.getElementById('addToCart').addEventListener('click', addToCart);
+                document.getElementById('buyNow').addEventListener('click', buyNow);
 
                 // 제품 설명 클릭 시 보이기/숨기기
                 document.getElementById('details').addEventListener('click', function() {
