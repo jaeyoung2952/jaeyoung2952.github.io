@@ -1,0 +1,175 @@
+<!DOCTYPE HTML>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>주문 확인</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+        .right {
+            flex: 2;
+        }
+        .order-details {
+            margin-bottom: 20px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .order-details div {
+            margin-bottom: 10px;
+        }
+        .order-summary {
+            margin-top: 30px;
+            border-top: 2px solid #ddd;
+            padding-top: 20px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .order-summary div {
+            margin-bottom: 10px;
+        }
+        .order-summary p {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .product-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        .product-item img {
+            width: 100px;
+            height: auto;
+            border-radius: 5px;
+        }
+        .product-item div {
+            flex: 1;
+            margin-left: 20px;
+        }
+        .btn {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .back-btn {
+            background-color: #6c757d;
+        }
+        .back-btn:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+<body>
+    <h1>주문 확인</h1>
+
+    <div class="container">
+
+        <!-- 오른쪽: 제품 정보 및 사용자 정보 -->
+        <div class="right">
+            <!-- 주문자 정보 -->
+            <div id="orderDetails" class="order-details"></div>
+
+            <!-- 주문 요약 -->
+            <div class="order-summary">
+                <p>주문 요약</p>
+                <div id="productSummary"></div>
+                <div id="totalPrice"></div>
+            </div>
+
+            <!-- 버튼 -->
+            <button class="btn back-btn" onclick="window.history.back();">돌아가기</button>
+            <button class="btn" onclick="completeOrder();">주문 완료</button>
+        </div>
+    </div>
+
+    <script>
+        // 로컬 스토리지에서 비회원 주문 정보 가져오기
+        const guestOrder = JSON.parse(localStorage.getItem('guestOrder'));
+
+        // 주문 정보가 없을 경우, 페이지를 새로 고침하거나 에러 처리
+        if (!guestOrder) {
+            alert('주문 정보가 없습니다. 장바구니에서 다시 주문해 주세요.');
+            window.location.href = 'cart.html'; // 장바구니 페이지로 리디렉션
+        }
+
+        // 주문자 정보 렌더링
+        function renderOrderDetails() {
+            const orderDetails = document.getElementById('orderDetails');
+
+            orderDetails.innerHTML = `
+                <div><strong>이름:</strong> ${guestOrder.name || '정보 없음'}</div>
+                <div><strong>이메일:</strong> ${guestOrder.email || '정보 없음'}</div>
+                <div><strong>전화번호:</strong> ${guestOrder.phone || '정보 없음'}</div>
+                <div><strong>주소:</strong> ${guestOrder.address || '정보 없음'}</div>
+            `;
+        }
+
+        // 주문한 상품들의 요약 렌더링
+        function renderProductSummary() {
+            const productSummary = document.getElementById('productSummary');
+            let total = 0;
+
+            // 제품 요약 정보와 총 합계 계산
+            productSummary.innerHTML = guestOrder.products.map(item => {
+                if (!item.name || !item.price || !item.quantity) return '';  // 제품 정보가 없을 경우 생략
+
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+
+                return `
+                    <div class="product-item">
+                        <img src="${item.image || 'default-image.jpg'}" alt="${item.name}">
+                        <div>
+                            <strong>${item.name}</strong><br>
+                            수량: ${item.quantity} <br>
+                            ${itemTotal}원
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            // 총합계 표시
+            document.getElementById('totalPrice').innerText = `총합계: ${total}원`;
+        }
+
+        // 주문 완료 처리
+        function completeOrder() {
+            alert('주문이 완료되었습니다! 감사합니다.');
+
+            // 주문 완료 후 로컬 스토리지에서 주문 정보 삭제
+            localStorage.removeItem('guestOrder');
+
+            // 주문 완료 후 페이지 리디렉션 (예시: 홈으로)
+            window.location.href = 'index.html';
+        }
+
+        // 페이지 로드 시 주문 정보 렌더링
+        renderOrderDetails();
+        renderProductSummary();
+    </script>
+</body>
+</html>

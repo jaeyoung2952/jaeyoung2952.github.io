@@ -69,15 +69,15 @@
     }
 
     li a:hover {
-        color: black; /* 호버 시 색상 유지 */
+        color: black;
     }
 
-    /* 밑줄 효과 */
+    /* 텍스트아래 밑줄 기능 */
     li a::after {
         content: "";
         position: absolute;
         left: 50%;
-        bottom: -5px; /* 텍스트 아래 위치 */
+        bottom: -5px;
         width: 0;
         height: 2px; /* 밑줄 두께 */
         background: black;
@@ -85,8 +85,8 @@
     }
 
     li a:hover::after {
-        width: 100%; /* 호버 시 밑줄 폭 */
-        left: 0;     /* 중앙에서 퍼짐 */
+        width: 100%; /* 밑 줄 넓이  */
+        left: 0;     /* 중앙에서 퍼지는거 */
     }
    
     #jaeyoung {text-align: center; font-size: 60px;
@@ -207,7 +207,7 @@
         <div id="image-container">
             <img src="https://ifh.cc/g/cbOH9P.jpg" class="active" alt="Fashion Image 1">
             <img src="https://ifh.cc/g/AFoPWX.jpg" alt="Fashion Image 2">
-            <img src="https://ifh.cc/g/T2gpsd.jpg" alt="Fashion Image 3"> <!-- 다른 이미지 URL로 변경 -->
+            <img src="https://ifh.cc/g/T2gpsd.jpg" alt="Fashion Image 3">
         </div>
         
  
