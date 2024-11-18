@@ -212,12 +212,19 @@
             </div>
             
             <div class="input-group mb-3">
+                <label for="sizeSelect">사이즈 선택: </label>
+                <select id="sizeSelect" class="form-select" style="max-width: 8rem; margin-left: 10px;">
+                    <option value="1사이즈">1사이즈</option>
+                    <option value="2사이즈">2사이즈</option>
+                    <option value="3사이즈">3사이즈</option>
+                </select>
+            </div>
+            <div class="input-group mb-3">
                 <span class="input-group-text">주문 수량</span>
                 <input class="form-control" type="number" value="1" min="1" style="max-width: 5rem;">
             </div>
             <button class="btn btn-outline-dark" id="addToCart">장바구니 담기</button>
-            <button class="btn btn-outline-dark" id="buyNow">바로 구매하기</button>
-            
+              
             <script>
                 // 장바구니에 담을 제품 정보
                 const product = {
@@ -226,21 +233,32 @@
                     image: "https://ifh.cc/g/4JmsJT.jpg",
                 };
 
-                // 장바구니에 제품 추가 함수
-                function addToCart() {
-                    const quantity = document.querySelector('input[type="number"]').value;
-                    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-                    const existingProduct = cart.find(item => item.name === product.name);
-                    
-                    if (existingProduct) {
-                        existingProduct.quantity += parseInt(quantity); // 수량 업데이트
-                    } else {
-                        cart.push({ ...product, quantity: parseInt(quantity) }); // 새로운 제품 추가
-                    }
-                    
-                    localStorage.setItem("cart", JSON.stringify(cart)); // 로컬 스토리지에 저장
-                    alert(quantity + "개가 장바구니에 담겼습니다.");
-                }
+ // 장바구니에 제품 추가 함수
+function addToCart() {
+    const quantity = document.querySelector('input[type="number"]').value;
+    const selectedSize = document.getElementById('sizeSelect').value; // 선택된 사이즈 가져오기
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    // 선택된 사이즈를 포함한 제품 객체
+    const productWithSize = {
+        ...product,
+        size: selectedSize,
+        quantity: parseInt(quantity)
+    };
+
+    // 장바구니에서 동일한 제품 및 사이즈가 있는지 확인
+    const existingProduct = cart.find(item => item.name === product.name && item.size === selectedSize);
+
+    if (existingProduct) {
+        existingProduct.quantity += parseInt(quantity); // 수량 업데이트
+    } else {
+        cart.push(productWithSize); // 새로운 제품 추가
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart)); // 로컬 스토리지에 저장
+    alert(quantity + "개가 장바구니에 담겼습니다. 선택한 사이즈: " + selectedSize);
+}
+
 
                 // 구매 버튼 클릭 시 동작
                 function buyNow() {

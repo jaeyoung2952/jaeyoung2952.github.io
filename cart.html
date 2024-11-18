@@ -24,7 +24,7 @@
             padding: 10px 0;
         }
         .cart-item img {
-            width: 100px; /* 작은 이미지 크기 설정 */
+            width: 100px;
             height: auto;
             margin-right: 20px;
         }
@@ -67,24 +67,7 @@
             font-size: 20px;
             color: #888;
         }
-        #guestCheckoutForm {
-            display: none;
-            margin-top: 20px;
-            font-size: 16px;
-        }
-        #guestCheckoutForm input {
-            margin: 5px 0;
-            padding: 8px;
-            width: 200px;
-        }
-        #guestCheckoutForm button {
-            margin-top: 10px;
-            padding: 10px;
-            background-color: #5cb85c;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
+
         .btn {
             margin-top: 20px;
             background-color: #007bff;
@@ -107,17 +90,6 @@
 
     <div class="empty-cart" id="emptyCartMessage" style="display: none;">장바구니가 비어 있습니다.</div>
 
-    <button id="buyAsGuestBtn" class="btn">비회원 구매하기</button>
-
-    <div id="guestCheckoutForm">
-        <h3>비회원 구매</h3>
-        <input type="text" id="name" placeholder="이름" required>
-        <input type="email" id="email" placeholder="이메일" required>
-        <input type="text" id="phone" placeholder="전화번호" required>
-        <input type="text" id="address" placeholder="배송지" required>
-        <button id="submitOrderBtn" class="btn">주문하기</button>
-    </div>
-
     <script>
         // 로컬 스토리지에서 장바구니 데이터 가져오기
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -129,12 +101,13 @@
 
         // cart의 각 항목을 처리하여 cartGrouped 객체로 변환
         cart.forEach(item => {
-            if (item && item.name && item.price && item.quantity) {  // 아이템 데이터가 유효한지 확인
-                if (cartGrouped[item.name]) {
-                    cartGrouped[item.name].quantity += item.quantity; // 수량 합산
-                    cartGrouped[item.name].totalPrice += item.price * item.quantity; // 총합 계산
+            if (item && item.name && item.price && item.quantity && item.size) { // 사이즈 정보 확인
+                const key = item.name + item.size; // 제품명과 사이즈를 조합하여 키 생성
+                if (cartGrouped[key]) {
+                    cartGrouped[key].quantity += item.quantity; // 수량 합산
+                    cartGrouped[key].totalPrice += item.price * item.quantity; // 총합 계산
                 } else {
-                    cartGrouped[item.name] = {
+                    cartGrouped[key] = {
                         ...item,
                         totalPrice: item.price * item.quantity // 첫 번째 추가되는 항목은 그 가격으로 총합 설정
                     };
@@ -164,15 +137,15 @@
                 row.innerHTML = `
                     <img src="${item.image || 'default-image.jpg'}" alt="${item.name}"> <!-- 제품 이미지 추가 -->
                     <div class="cart-item-details">
-                        <div>${item.name}</div>
+                        <div>${item.name} (사이즈: ${item.size})</div>
                         <div>${item.price}원</div>
                         <div class="quantity-control">
-                            <button onclick="updateQuantity('${item.name}', 'decrease')">-</button>
+                            <button onclick="updateQuantity('${item.name}', '${item.size}', 'decrease')">-</button>
                             <span>수량: ${item.quantity}</span>
-                            <button onclick="updateQuantity('${item.name}', 'increase')">+</button>
+                            <button onclick="updateQuantity('${item.name}', '${item.size}', 'increase')">+</button>
                         </div>
                         <div>${item.totalPrice}원</div>
-                        <button onclick="removeItem('${item.name}')">삭제</button>
+                        <button onclick="removeItem('${item.name}', '${item.size}')">삭제</button>
                     </div>
                 `;
 
@@ -184,8 +157,9 @@
         }
 
         // 수량을 증가시키거나 감소시키는 함수
-        function updateQuantity(itemName, action) {
-            const item = cartGrouped[itemName];
+        function updateQuantity(itemName, itemSize, action) {
+            const key = itemName + itemSize;
+            const item = cartGrouped[key];
 
             if (item) {
                 if (action === 'increase') {
@@ -197,7 +171,7 @@
                 item.totalPrice = item.price * item.quantity; // 총합 재계산
 
                 // 로컬 스토리지에 변경된 장바구니 데이터 저장
-                localStorage.setItem('cart', JSON.stringify(cart));
+                localStorage.setItem('cart', JSON.stringify(Object.values(cartGrouped)));
 
                 // 장바구니 다시 렌더링
                 renderCart();
@@ -205,52 +179,16 @@
         }
 
         // 장바구니에서 항목 삭제
-        function removeItem(itemName) {
-            // 해당 제품만 삭제
-            const newCart = cart.filter(item => item.name !== itemName);
+        function removeItem(itemName, itemSize) {
+            const key = itemName + itemSize;
+            delete cartGrouped[key]; // 해당 제품 삭제
 
             // 로컬 스토리지에 변경된 장바구니 데이터 저장
-            localStorage.setItem('cart', JSON.stringify(newCart));
+            localStorage.setItem('cart', JSON.stringify(Object.values(cartGrouped)));
 
             // 장바구니 다시 렌더링
             renderCart();
         }
-
-        // 비회원 구매하기 버튼 클릭 시 폼 표시
-        document.getElementById('buyAsGuestBtn').addEventListener('click', function() {
-            const form = document.getElementById('guestCheckoutForm');
-            form.style.display = 'block'; // 폼을 보이도록 설정
-        });
-
-        // 주문하기 버튼 클릭 시 로컬 스토리지에 주문 정보 저장
-        document.getElementById('submitOrderBtn').addEventListener('click', function() {
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            const address = document.getElementById('address').value;
-
-            if (!name || !email || !phone || !address) {
-                alert('모든 필드를 입력해 주세요.');
-                return;
-            }
-
-            // 비회원 주문 정보 객체 생성
-            const guestOrder = {
-                name: name,
-                email: email,
-                phone: phone,
-                address: address,
-                products: cart, // 장바구니에 담긴 모든 상품
-            };
-
-            // 로컬 스토리지에 비회원 주문 정보 저장
-            localStorage.setItem("guestOrder", JSON.stringify(guestOrder));
-
-            alert('주문이 완료되었습니다. 확인 페이지로 이동합니다.');
-
-            // 확인 페이지로 이동 (예시)
-            window.location.href = 'checkout.html';
-        });
 
         // 초기 장바구니 렌더링
         renderCart();
