@@ -1,0 +1,178 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Outer Fashion</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            padding-bottom: 60px; /* Footer 공간 추가 */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* 중앙 정렬 */
+        }
+
+        #header {
+            position: relative;
+            background-color: #fdfdfd; /* 흰색에 가까운 배경 */
+            padding: 15px;
+            text-align: center;
+            width: 100%; /* 전체 너비 적용 */
+        }
+
+        #logo {
+            position: absolute;
+            left: 50px; /* 로고 위치 변경 */
+            top: 10px; /* 위쪽 여백 조정 */
+            font-size: 22px; /* 글자 크기 약간 축소 */
+            font-weight: 700; /* 굵기 설정 */
+            color: #222; /* 검정보다 연한 색 */
+            line-height: 45px; /* 가운데 정렬 */
+            text-decoration: none;
+        }
+
+        #navbar {
+            padding: 18px 0;
+            margin-top: 40px;
+        }
+
+        ul {
+            padding: 10px;
+            margin: 0 auto;
+            font-size: 18px; /* 글자 크기 약간 축소 */
+        }
+
+        li {
+            display: inline-block; /* 수평 정렬 */
+            margin: 0 20px;
+            position: relative; /* 부모 요소를 기준으로 밑줄 위치 설정 */
+        }
+
+        li a {
+            color: #333; 
+            text-decoration: none;
+            padding: 6px 12px; 
+            font-size: 18px;
+        }
+
+        li a:hover {
+            background: #ccc; /* 밝은 회색 */
+        }
+
+        li a::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: -4px;
+            width: 0;
+            height: 2px;
+            background: #444;
+            transition: all 0.2s ease;
+        }
+
+        li a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        #content {
+            padding: 15px;
+            text-align: center;
+            display: flex;
+            flex-wrap: wrap; 
+            justify-content: center;
+        }
+
+        h1 {
+            width: 100%; 
+            margin: 15px 0;
+            font-size: 30px;
+        }
+
+        .product-container {
+            margin: 25px;
+            display: flex;
+            flex-direction: column; 
+            align-items: center;
+            width: 95%; /* 화면 너비의 95% */
+        }
+
+        .product-container img {
+            width: 100vw; /* 전체 화면 너비 */
+            height: auto;
+            object-fit: cover; /* 이미지 비율 유지 */
+        }
+
+        #user-actions {
+            position: absolute;
+            top: 30px;
+            right: 280px;
+            display: flex;
+            gap: 15px;
+        }
+
+        #Login, #cartLink {
+            text-decoration: none;
+            color: #000;
+            font-size: 16px;
+        }
+
+        #Login:hover, #cartLink:hover {
+            color: #777;
+        }
+
+        .footer-section {
+            text-align: left;
+            width: 90%; /* 전체 너비보다 살짝 줄임 */
+            padding-left: 20px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="header">
+        <a id="logo" href="index.html">OSIM</a>
+        <div id="navbar">
+            <ul>
+                <li><a href="outer.html">Outer</a></li>
+                <li><a href="top.html">Top</a></li>
+                <li><a href="bottom.html">Bottom</a></li>
+                <li><a href="fashion.html">Fashion</a></li>
+            </ul>
+        </div>
+        <div id="user-actions">
+            <a id="Login" href="login.html">Login</a>
+            <a id="cartLink" href="cart.html">Cart</a>
+        </div>
+    </div>
+
+    <div id="content">
+        <h1>Fashion</h1>
+    
+        <div class="product-container">
+            <img src="https://ifh.cc/g/hqoq1B.jpg">
+        </div>
+    
+    </div>
+    <div class="footer-section">
+            <ul>
+                <h2>Information</h2>
+                <li>회사명: OSIM </li>
+                <li>Address: 전북 전주특별시 완산구 천잠로 303</li>
+                <li>COO: Park Jae Young / CEO: Kim Chan Jin</li>
+            </ul>   
+    </div>
+
+    <div class="footer-section">    
+        <li>Email: qkrwodud2952@jj.ac.kr</li>
+        <li>Phone: 010-1010-1010</li>
+    </div>
+
+    <div class="footer-section">
+        FAX: 010-1010-1010
+    </div>
+
+</body>
+</html>
