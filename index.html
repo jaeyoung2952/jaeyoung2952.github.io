@@ -5,8 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Fashion Web Page</title>
         <style>
-            /* 사용자 링크를 화면 상단에 오른쪽에 배치 */
-            #user-links {
+            #top-links {
                 position: absolute;
                 top: 40px;
                 right: 250px;
@@ -14,17 +13,17 @@
                 gap: 25px;
             }
 
-            #login-btn, #cart-btn {
+            #login-btn, #cart-btn, #instagram-btn, #kakao-btn {
                 text-decoration: none;
                 color: #333;
                 font-size: 18px;
             }
 
-            #login-btn:hover, #cart-btn:hover {
+            #login-btn:hover, #cart-btn:hover, #instagram-btn:hover, #kakao-btn:hover {
                 color: #555;
             }
 
-            #website-logo {
+            #logo {
                 position: absolute;
                 left: 50px;
                 top: 20px;
@@ -33,7 +32,7 @@
                 color: #333;
             }
 
-            #carousel-container {
+            #image {
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -41,13 +40,13 @@
                 overflow: hidden;
             }
 
-            #carousel-container img {
+            #image img {
                 width: 100%;
                 height: auto;
                 display: none;
             }
 
-            #carousel-container img.active {
+            #image img.active {
                 display: block;
             }
 
@@ -151,17 +150,22 @@
         </style>
     </head>
     <body>
-        <div id="user-links">
+        <div id="top-links">
             <a id="login-btn" href="login.html">Login</a>
             <a id="cart-btn" href="cart.html">Cart</a>
+            <a id="instagram-btn" href="https://www.instagram.com/borntowin.co.kr/" target="_blank">
+                <img src="https://ifh.cc/g/1YPHST.png" alt="Instagram" style="width: 24px; height: 24px;">
+            </a>
+            <a id="kakao-btn" href="https://pf.kakao.com/_KIrxoj/posts" target="_blank">
+                <img src="https://ifh.cc/g/7qqnMg.png" alt="kakao" style="width: 24px; height: 24px;">
+            </a>
         </div>
 
-        <div id="website-logo">OSIM</div>
+        <div id="logo">OSIM</div>
 
-        <!-- 팝업 창 HTML -->
         <div id="modal" class="modal">
             <div class="modal-content">
-                <img id="modal-image" src="https://ifh.cc/g/qM8YWc.jpg" alt="Popup Image">
+                <img id="modal-image" src="https://ifh.cc/g/WLCjNH.jpg" alt="Popup Image">
                 <button class="close-modal-btn" onclick="closeModal()">Close</button>
             </div>
         </div>
@@ -173,7 +177,7 @@
             <li><a href="fashion.html">Fashion</a></li>
         </ul>
 
-        <div id="carousel-container">
+        <div id="image">
             <img src="https://ifh.cc/g/cbOH9P.jpg" class="active" alt="Fashion Image 1">
             <img src="https://ifh.cc/g/AFoPWX.jpg" alt="Fashion Image 2">
             <img src="https://ifh.cc/g/T2gpsd.jpg" alt="Fashion Image 3">
@@ -206,8 +210,8 @@
             setInterval(updateImage, 3000); // Change image every 3 seconds
 
             const modalImages = [
-                "https://ifh.cc/g/qM8YWc.jpg", 
-                "https://ifh.cc/g/WLCjNH.jpg",
+                "https://ifh.cc/g/WLCjNH.jpg", 
+                "https://ifh.cc/g/qM8YWc.jpg",
             ];
             let currentModalIndex = 0;
             const modalImage = document.getElementById('modal-image');
