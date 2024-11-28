@@ -50,7 +50,7 @@
                 display: block;
             }
 
-            #dropdown-menu {
+            #menu {
                 display: flex;
                 justify-content: center;
                 margin-top: 50px;
@@ -170,7 +170,7 @@
             </div>
         </div>
 
-        <ul id="dropdown-menu">
+        <ul id="menu">
             <li><a href="outer.html">Outer</a></li>
             <li><a href="top.html">Top</a></li>
             <li><a href="bottom.html">Bottom</a></li>
@@ -198,40 +198,45 @@
 
         <script>
             let imageIndex = 0;
-            const images = document.querySelectorAll('#carousel-container img');
+            const images = document.querySelectorAll('#image img'); // 올바른 셀렉터 사용
             const totalImages = images.length;
-
+        
             function updateImage() {
-                images[imageIndex].classList.remove('active');
+                images.forEach((img, index) => {
+                    img.classList.toggle('active', index === imageIndex);
+                });
                 imageIndex = (imageIndex + 1) % totalImages;
-                images[imageIndex].classList.add('active');
             }
-
-            setInterval(updateImage, 3000); // Change image every 3 seconds
-
+        
+            // 3초마다 이미지 변경
+            setInterval(updateImage, 3000);
+        
             const modalImages = [
                 "https://ifh.cc/g/WLCjNH.jpg", 
                 "https://ifh.cc/g/qM8YWc.jpg",
             ];
             let currentModalIndex = 0;
             const modalImage = document.getElementById('modal-image');
-
+        
             function switchModalImage() {
                 currentModalIndex = (currentModalIndex + 1) % modalImages.length;
                 modalImage.src = modalImages[currentModalIndex];
             }
-
-            setInterval(switchModalImage, 3000); // Change modal image every 3 seconds
-
+        
+            // 3초마다 모달 이미지 변경
+            setInterval(switchModalImage, 3000);
+        
             function openModal() {
                 document.getElementById('modal').style.display = 'flex';
             }
-
+        
             function closeModal() {
                 document.getElementById('modal').style.display = 'none';
             }
-
+        
+            // 페이지 로드 시 모달 열기
             window.onload = openModal;
         </script>
+        
     </body>
 </html>
