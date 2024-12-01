@@ -115,7 +115,7 @@
             }
         });
 
-        // 장바구니 항목 렌더링
+        // 장바구니 항목 
         function renderCart() {
             cartItemsContainer.innerHTML = ''; // 기존 장바구니 항목 초기화
             total = 0; // 총 합계 초기화
@@ -127,7 +127,7 @@
                 document.getElementById('emptyCartMessage').style.display = 'none';
             }
 
-            // 장바구니 항목 렌더링
+            // 장바구니 항목 
             Object.values(cartGrouped).forEach((item) => {
                 const row = document.createElement('div');
                 row.classList.add('cart-item');
@@ -165,7 +165,7 @@
                 if (action === 'increase') {
                     item.quantity += 1; // 수량 증가
                 } else if (action === 'decrease' && item.quantity > 1) {
-                    item.quantity -= 1; // 수량 감소 (최소 1개)
+                    item.quantity -= 1; // 수량 감소 
                 }
 
                 item.totalPrice = item.price * item.quantity; // 총합 재계산

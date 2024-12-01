@@ -224,6 +224,7 @@
                 <input class="form-control" type="number" value="1" min="1" style="max-width: 5rem;">
             </div>
             <button class="btn btn-outline-dark" id="addToCart">장바구니 담기</button>
+            <button class="btn btn-outline-dark" id="buyNow">바로 구매하기</button>
                  
             <script>
                 // 장바구니에 담을 제품 정보
@@ -257,6 +258,8 @@ function addToCart() {
 
     localStorage.setItem("cart", JSON.stringify(cart)); // 로컬 스토리지에 저장
     alert(quantity + "개가 장바구니에 담겼습니다. 선택한 사이즈: " + selectedSize);
+
+
 }
 
 

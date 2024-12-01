@@ -201,6 +201,8 @@
         <div class="product-info">
             <h1>BIG CHROME B BLACK LINE ZIP-UP HOODIE [BLACK]</h1>
             <div class="price">판매가: 129,000원</div>
+
+
             <div id="details"> DETAILS</div>
             <div id="description">
                 <strong>* 빅트롭 B 블랙 라인 집업 후디</strong>
@@ -210,6 +212,7 @@
                     <li>빅 크롬 B 로고 포인트</li>
                 </ul>
             </div>
+            
             
             <div class="input-group mb-3">
                 <label for="sizeSelect">사이즈 선택: </label>
@@ -224,6 +227,7 @@
                 <input class="form-control" type="number" value="1" min="1" style="max-width: 5rem;">
             </div>
             <button class="btn btn-outline-dark" id="addToCart">장바구니 담기</button>
+            <button class="btn btn-outline-dark" id="buyNow">바로 구매하기</button>
             
             
             <script>
@@ -258,8 +262,8 @@ function addToCart() {
 
     localStorage.setItem("cart", JSON.stringify(cart)); // 로컬 스토리지에 저장
     alert(quantity + "개가 장바구니에 담겼습니다. 선택한 사이즈: " + selectedSize);
-}
 
+}
 
                 // 구매 버튼 클릭 시 동작
                 function buyNow() {
